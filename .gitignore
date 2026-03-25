@@ -1,0 +1,5 @@
+node_modules/
+frames/
+temporary screenshots/
+.claude/
+package-lock.json
