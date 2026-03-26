@@ -6,7 +6,7 @@
   <title>GoGameMarketing — Маркетинг для PC-клубов</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
       --accent: #E8191A;
@@ -25,7 +25,7 @@
     body {
       background: var(--bg);
       color: var(--text-primary);
-      font-family: 'Archivo', sans-serif;
+      font-family: 'Manrope', sans-serif;
       line-height: 1.7;
       overflow-x: hidden;
     }
@@ -360,7 +360,7 @@
       animation: gradientSlide 4s linear infinite, heroReveal 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s both;
     }
     .hero-title {
-      font-family: 'Onest', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(2.8rem, 5.8vw, 6rem);
       font-weight: 800;
       letter-spacing: 0.02em;
@@ -404,7 +404,7 @@
       height: 50px;
       padding: 0 58px 0 26px;
       border-radius: 9999px;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Manrope', sans-serif;
       font-size: 0.95rem;
       font-weight: 600;
       text-decoration: none;
@@ -830,17 +830,51 @@
       -webkit-backdrop-filter: blur(20px);
       border-radius: 20px;
       padding: 32px;
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.35s ease, box-shadow 0.35s ease;
     }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.75), transparent);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .feature-card:hover::before { opacity: 1; }
     .feature-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(var(--accent-rgb), 0.22);
-      box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.07);
+      transform: translateY(-5px);
+      border-color: rgba(var(--accent-rgb), 0.2);
+      box-shadow: 0 16px 48px rgba(var(--accent-rgb), 0.1), 0 2px 8px rgba(0,0,0,0.6);
     }
-    .feature-icon {
-      font-size: 1.8rem;
-      margin-bottom: 16px;
-      display: block;
+    .feature-num {
+      position: absolute;
+      top: 24px; right: 24px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.1);
+      transition: color 0.35s ease;
+    }
+    .feature-card:hover .feature-num { color: rgba(var(--accent-rgb), 0.45); }
+    .feature-icon-wrap {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      border-radius: 13px;
+      border: 1px solid rgba(var(--accent-rgb), 0.18);
+      background: rgba(var(--accent-rgb), 0.04);
+      transition: border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+    }
+    .feature-card:hover .feature-icon-wrap {
+      border-color: rgba(var(--accent-rgb), 0.42);
+      background: rgba(var(--accent-rgb), 0.08);
+      box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.14), inset 0 0 14px rgba(var(--accent-rgb), 0.06);
     }
     .feature-card h3 {
       font-family: 'Space Grotesk', sans-serif;
@@ -1101,36 +1135,106 @@
     <span class="section-eyebrow">Что мы делаем</span>
     <h2 class="section-title" style="margin-bottom:48px;">Полный цикл продвижения</h2>
     <div class="features-grid">
+
+      <!-- 01 SMM -->
       <div class="feature-card">
-        <span class="feature-icon">🎯</span>
+        <span class="feature-num">01</span>
+        <div class="feature-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="13" cy="5.5" r="2.2" stroke="#E8191A" fill="rgba(232,25,26,0.18)"/>
+            <circle cx="5" cy="19" r="2.2"/>
+            <circle cx="21" cy="19" r="2.2"/>
+            <line x1="11.1" y1="7.2" x2="6.4" y2="17.1"/>
+            <line x1="14.9" y1="7.2" x2="19.6" y2="17.1"/>
+            <line x1="7.2" y1="19" x2="18.8" y2="19"/>
+          </svg>
+        </div>
         <h3>SMM для геймеров</h3>
         <p>Ведём соцсети на языке вашей аудитории. Знаем тренды, мемы и форматы, которые генерируют вовлечённость в игровом комьюнити</p>
       </div>
+
+      <!-- 02 Таргет -->
       <div class="feature-card">
-        <span class="feature-icon">📣</span>
+        <span class="feature-num">02</span>
+        <div class="feature-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.4" stroke-linecap="round">
+            <circle cx="13" cy="13" r="10"/>
+            <circle cx="13" cy="13" r="5.5" stroke="#E8191A"/>
+            <circle cx="13" cy="13" r="1.4" fill="#E8191A" stroke="none"/>
+            <line x1="13" y1="1" x2="13" y2="4.5"/>
+            <line x1="13" y1="21.5" x2="13" y2="25"/>
+            <line x1="1" y1="13" x2="4.5" y2="13"/>
+            <line x1="21.5" y1="13" x2="25" y2="13"/>
+          </svg>
+        </div>
         <h3>Таргетированная реклама</h3>
         <p>ВКонтакте, Telegram, myTarget — настраиваем кампании на геймеров в вашем городе. Только целевой трафик, без слива бюджета</p>
       </div>
+
+      <!-- 03 Брендинг -->
       <div class="feature-card">
-        <span class="feature-icon">🎨</span>
+        <span class="feature-num">03</span>
+        <div class="feature-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2L24 8.5V17.5L13 24L2 17.5V8.5Z"/>
+            <path d="M13 7.5L18.5 10.8V15.2L13 18.5L7.5 15.2V10.8Z" stroke="#E8191A"/>
+            <line x1="13" y1="2" x2="13" y2="7.5"/>
+            <line x1="24" y1="8.5" x2="18.5" y2="10.8"/>
+            <line x1="24" y1="17.5" x2="18.5" y2="15.2"/>
+            <line x1="13" y1="24" x2="13" y2="18.5"/>
+            <line x1="2" y1="17.5" x2="7.5" y2="15.2"/>
+            <line x1="2" y1="8.5" x2="7.5" y2="10.8"/>
+          </svg>
+        </div>
         <h3>Брендинг клуба</h3>
         <p>Создаём визуальный образ, который хочется посетить. Логотип, фирменный стиль, оформление пространства и соцсетей</p>
       </div>
+
+      <!-- 04 Видео -->
       <div class="feature-card">
-        <span class="feature-icon">🎬</span>
+        <span class="feature-num">04</span>
+        <div class="feature-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="16" height="12" rx="1.5"/>
+            <path d="M18 10.5L24 8V18L18 15.5"/>
+            <path d="M8 11.5L13 13L8 14.5Z" fill="#E8191A" stroke="#E8191A" stroke-width="0.6" stroke-linejoin="round"/>
+          </svg>
+        </div>
         <h3>Видео-продакшн</h3>
         <p>Атмосферные ролики о клубе, рилсы для охвата, стримы и highlights — контент, который виральным становится</p>
       </div>
+
+      <!-- 05 SEO -->
       <div class="feature-card">
-        <span class="feature-icon">🔍</span>
+        <span class="feature-num">05</span>
+        <div class="feature-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.4" stroke-linecap="round">
+            <circle cx="11" cy="11" r="7.5"/>
+            <circle cx="11" cy="11" r="3" stroke="#E8191A"/>
+            <line x1="17" y1="17" x2="23" y2="23"/>
+            <line x1="11" y1="6.5" x2="11" y2="8"/>
+          </svg>
+        </div>
         <h3>Локальное SEO</h3>
         <p>Ваш клуб первым в Google и Яндекс по запросам «PC-клуб [ваш город]». Оптимизируем карточки и сайт под локальный поиск</p>
       </div>
+
+      <!-- 06 Аналитика -->
       <div class="feature-card">
-        <span class="feature-icon">📊</span>
+        <span class="feature-num">06</span>
+        <div class="feature-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="22" x2="3" y2="4"/>
+            <line x1="3" y1="22" x2="23" y2="22"/>
+            <rect x="5.5" y="15" width="3.5" height="7" rx="0.6" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.82)"/>
+            <rect x="11.25" y="10" width="3.5" height="12" rx="0.6" fill="rgba(232,25,26,0.18)" stroke="#E8191A"/>
+            <rect x="17" y="5.5" width="3.5" height="16.5" rx="0.6" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.82)"/>
+          </svg>
+        </div>
         <h3>Аналитика и отчёты</h3>
         <p>Еженедельные отчёты с понятными KPI: охват, клики, визиты, стоимость привлечения. Никаких абстрактных метрик</p>
       </div>
+
     </div>
   </div>
 </section>

@@ -1,5 +1,8 @@
 node_modules/
 frames/
+tmp_frames/
 temporary screenshots/
 .claude/
 package-lock.json
+site-preview.mp4
+.mcp.json
