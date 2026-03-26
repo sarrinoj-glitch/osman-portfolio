@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.2/build/three.module.js"}}</script>
   <style>
     :root {
       --accent: #E8191A;
@@ -908,7 +909,8 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 120px 32px;
+      padding: 140px 32px;
+      min-height: 680px;
       overflow: hidden;
     }
     .cta-orb {
@@ -990,6 +992,25 @@
       color: var(--text-muted);
       font-size: 0.78rem;
     }
+
+    /* ── Three.js Globe — CTA ─────────────────────────────── */
+    #cta-globe {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    #cta-globe canvas {
+      width: 100% !important;
+      height: 100% !important;
+      opacity: 0.9;
+      mask-image: radial-gradient(ellipse 88% 92% at 50% 52%, black 45%, transparent 88%);
+      -webkit-mask-image: radial-gradient(ellipse 88% 92% at 50% 52%, black 45%, transparent 88%);
+    }
+    #cta { position: relative; }
+    .cta-orb  { z-index: 1; }
+    .cta-content { position: relative; z-index: 2; }
   </style>
 </head>
 <body>
@@ -1240,6 +1261,7 @@
 </section>
 
 <section id="cta">
+  <div id="cta-globe"></div>
   <div class="cta-orb"></div>
   <div class="cta-content">
     <h2><span class="special-text" data-text="Готовы заполнить зал игроками?">Готовы заполнить зал игроками?</span></h2>
@@ -1702,6 +1724,10 @@ specObserver.observe(document.getElementById('specs'));
     observer.observe(el);
   });
 })();
+</script>
+<script type="module">
+  import { initGlobe } from '/src/globe.js'
+  initGlobe('cta-globe')
 </script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 node_modules/
+dist/
 frames/
 tmp_frames/
 temporary screenshots/
