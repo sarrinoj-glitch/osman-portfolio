@@ -21,6 +21,11 @@ const page = await browser.newPage();
 await page.setViewport({ width: 1440, height: 900 });
 await page.goto(url, { waitUntil: 'networkidle2' });
 await new Promise(r => setTimeout(r, 1500));
+// Force all reveal animations to show
+await page.evaluate(() => {
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => el.classList.add('visible'));
+});
+await new Promise(r => setTimeout(r, 500));
 await page.screenshot({ path: outPath, fullPage: true });
 await browser.close();
 

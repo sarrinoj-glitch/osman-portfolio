@@ -6,28 +6,83 @@
   <title>Осман — Performance-маркетолог</title>
   <meta name="description" content="Маркетолог, который строит системы привлечения клиентов. 4 года опыта, 13 проектов, результаты в цифрах.">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Nebulas';
+      src: url('font-2/Nebulas-Regular.woff2') format('woff2'),
+           url('font-2/Nebulas-Regular.woff') format('woff'),
+           url('font-2/Nebulas-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Nebulas';
+      src: url('font-2/Nebulas-Medium.woff2') format('woff2'),
+           url('font-2/Nebulas-Medium.woff') format('woff'),
+           url('font-2/Nebulas-Medium.ttf') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Nebulas';
+      src: url('font-2/Nebulas-SemiBold.woff2') format('woff2'),
+           url('font-2/Nebulas-SemiBold.woff') format('woff'),
+           url('font-2/Nebulas-SemiBold.ttf') format('truetype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Nebulas';
+      src: url('font-2/Nebulas-Bold.woff2') format('woff2'),
+           url('font-2/Nebulas-Bold.woff') format('woff'),
+           url('font-2/Nebulas-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Nebulas';
+      src: url('font-2/Nebulas-ExtraBold.woff2') format('woff2'),
+           url('font-2/Nebulas-ExtraBold.woff') format('woff'),
+           url('font-2/Nebulas-ExtraBold.ttf') format('truetype');
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Nebulas';
+      src: url('font-2/Nebulas-Black.woff2') format('woff2'),
+           url('font-2/Nebulas-Black.woff') format('woff'),
+           url('font-2/Nebulas-Black.ttf') format('truetype');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            cream: '#FAF9F6',
-            sand: '#F3F1EC',
-            stone: '#E8E6E1',
-            ink: '#171717',
-            carbon: '#2A2A2A',
-            ash: '#6B6B6B',
-            silver: '#999999',
-            whisper: '#C8C5BE',
-            warm: '#B5895A',
-            'warm-light': '#D4A96A',
+            space: '#0C1222',
+            'space-light': '#111a2e',
+            'space-card': 'rgba(255,255,255,0.05)',
+            'space-border': 'rgba(255,255,255,0.1)',
+            'space-divider': 'rgba(255,255,255,0.06)',
+            ink: '#FFFFFF',
+            carbon: '#E0E0E0',
+            ash: 'rgba(255,255,255,0.6)',
+            silver: 'rgba(255,255,255,0.4)',
+            whisper: 'rgba(255,255,255,0.2)',
+            warm: '#7C8FFF',
+            'warm-light': '#9BA8FF',
           },
           fontFamily: {
-            display: ['Fraunces', 'Georgia', 'serif'],
-            body: ['Outfit', 'sans-serif'],
+            display: ['Nebulas', 'sans-serif'],
+            body: ['Nebulas', 'sans-serif'],
           },
         }
       }
@@ -37,11 +92,19 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Outfit', sans-serif;
-      background: #FAF9F6;
-      color: #171717;
+      font-family: 'Nebulas', sans-serif;
+      background: #0C1222;
+      color: #FFFFFF;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+    }
+
+    /* Star canvas */
+    #starCanvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
     }
 
     /* Subtle grain */
@@ -51,41 +114,40 @@
       inset: 0;
       z-index: 9999;
       pointer-events: none;
-      opacity: 0.018;
+      opacity: 0.03;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 256px;
     }
 
     ::selection {
-      background: rgba(181, 137, 90, 0.15);
-      color: #171717;
+      background: rgba(124, 143, 255, 0.25);
+      color: #FFFFFF;
     }
 
     ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #FAF9F6; }
-    ::-webkit-scrollbar-thumb { background: #C8C5BE; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #B5895A; }
+    ::-webkit-scrollbar-track { background: #0C1222; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #7C8FFF; }
 
     /* Typography */
     .heading {
-      font-family: 'Fraunces', Georgia, serif;
-      font-optical-sizing: auto;
-      letter-spacing: -0.035em;
-      line-height: 1.05;
-      font-weight: 600;
+      font-family: 'Nebulas', sans-serif;
+      letter-spacing: -0.025em;
+      line-height: 1.08;
+      font-weight: 700;
     }
     .body-text {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Nebulas', sans-serif;
       line-height: 1.7;
-      font-weight: 300;
+      font-weight: 400;
     }
     .label {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Nebulas', sans-serif;
       font-weight: 500;
       font-size: 0.75rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #B5895A;
+      color: #7C8FFF;
     }
 
     /* Scroll reveal */
@@ -127,9 +189,9 @@
 
     /* Buttons */
     .btn-primary {
-      background: #171717;
-      color: #FAF9F6;
-      font-family: 'Outfit', sans-serif;
+      background: #F5F5F0;
+      color: #0C1222;
+      font-family: 'Nebulas', sans-serif;
       font-weight: 500;
       letter-spacing: 0.01em;
       transition: transform 0.25s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.25s cubic-bezier(0.23, 1, 0.32, 1);
@@ -137,26 +199,26 @@
     }
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+      box-shadow: 0 12px 28px rgba(124, 143, 255, 0.2);
     }
     .btn-primary:active { transform: scale(0.98); }
-    .btn-primary:focus-visible { outline: 2px solid #B5895A; outline-offset: 3px; }
+    .btn-primary:focus-visible { outline: 2px solid #7C8FFF; outline-offset: 3px; }
 
     .btn-outline {
-      border: 1.5px solid #171717;
-      color: #171717;
-      font-family: 'Outfit', sans-serif;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: #FFFFFF;
+      font-family: 'Nebulas', sans-serif;
       font-weight: 500;
       transition: background 0.25s, color 0.25s, transform 0.25s cubic-bezier(0.23, 1, 0.32, 1);
       cursor: pointer;
     }
     .btn-outline:hover {
-      background: #171717;
-      color: #FAF9F6;
+      background: #F5F5F0;
+      color: #0C1222;
       transform: translateY(-2px);
     }
     .btn-outline:active { transform: scale(0.98); }
-    .btn-outline:focus-visible { outline: 2px solid #B5895A; outline-offset: 3px; }
+    .btn-outline:focus-visible { outline: 2px solid #7C8FFF; outline-offset: 3px; }
 
     /* Photo */
     .hero-photo {
@@ -176,25 +238,27 @@
 
     /* Cards */
     .card {
-      background: #FFFFFF;
-      border: 1px solid #E8E6E1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 16px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     }
     .card:hover {
-      border-color: #C8C5BE;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+      border-color: rgba(255,255,255,0.18);
+      box-shadow: 0 8px 32px rgba(124, 143, 255, 0.08);
       transform: translateY(-3px);
     }
 
     /* Nav */
     .nav-link {
-      color: #6B6B6B;
+      color: rgba(255,255,255,0.6);
       position: relative;
       transition: color 0.25s;
       cursor: pointer;
     }
-    .nav-link:hover { color: #171717; }
+    .nav-link:hover { color: #FFFFFF; }
     .nav-link::after {
       content: '';
       position: absolute;
@@ -202,7 +266,7 @@
       left: 0;
       width: 0;
       height: 1.5px;
-      background: #B5895A;
+      background: #7C8FFF;
       transition: width 0.35s cubic-bezier(0.23, 1, 0.32, 1);
     }
     .nav-link:hover::after { width: 100%; }
@@ -210,7 +274,7 @@
     /* Section divider */
     .divider {
       height: 1px;
-      background: linear-gradient(90deg, transparent, #E8E6E1, transparent);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
       max-width: 1152px;
       margin: 0 auto;
     }
@@ -220,23 +284,23 @@
     .results-table th {
       text-align: left;
       padding: 0.875rem 1.25rem;
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Nebulas', sans-serif;
       font-weight: 500;
       font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: #999;
-      border-bottom: 1.5px solid #E8E6E1;
+      color: rgba(255,255,255,0.4);
+      border-bottom: 1.5px solid rgba(255,255,255,0.1);
     }
     .results-table td {
       padding: 1rem 1.25rem;
-      border-bottom: 1px solid #F3F1EC;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       font-weight: 300;
       font-size: 0.95rem;
     }
     .results-table tr:last-child td { border-bottom: none; }
     .results-table tbody tr { transition: background 0.2s; }
-    .results-table tbody tr:hover { background: #F3F1EC; }
+    .results-table tbody tr:hover { background: rgba(255,255,255,0.03); }
 
     /* Pillar icon */
     .pillar-icon {
@@ -246,8 +310,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #F3F1EC;
-      border: 1px solid #E8E6E1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
       flex-shrink: 0;
     }
 
@@ -258,26 +322,29 @@
       gap: 0.5rem;
       padding: 0.625rem 1.125rem;
       border-radius: 100px;
-      border: 1px solid #E8E6E1;
-      background: #FFFFFF;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
       font-size: 0.9rem;
       font-weight: 400;
-      color: #2A2A2A;
+      color: rgba(255,255,255,0.7);
       transition: border-color 0.25s, background 0.25s, transform 0.25s;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
     .service-tag:hover {
-      border-color: #B5895A;
-      background: #FAF9F6;
+      border-color: #7C8FFF;
+      background: rgba(124, 143, 255, 0.08);
       transform: translateY(-1px);
     }
 
     /* Stat */
     .stat-number {
-      font-family: 'Fraunces', Georgia, serif;
+      font-family: 'Nebulas', sans-serif;
       font-weight: 700;
       font-size: clamp(2.5rem, 5vw, 3.5rem);
       line-height: 1;
-      color: #171717;
+      color: #FFFFFF;
+      font-variant-numeric: tabular-nums;
     }
 
     /* Pain marker */
@@ -290,7 +357,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #B5895A;
+      background: #7C8FFF;
     }
 
     /* Flagship badge */
@@ -302,12 +369,12 @@
       font-size: 0.75rem;
       font-weight: 500;
       letter-spacing: 0.02em;
-      background: #F3F1EC;
-      color: #6B6B6B;
-      border: 1px solid #E8E6E1;
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.1);
     }
     .badge-accent {
-      background: linear-gradient(135deg, #B5895A, #D4A96A);
+      background: linear-gradient(135deg, #5B6BFF, #7C8FFF);
       color: #FFFFFF;
       border: none;
     }
@@ -349,7 +416,7 @@
       left: 0;
       right: 0;
       height: 30%;
-      background: linear-gradient(to top, #FAF9F6, transparent);
+      background: linear-gradient(to top, #0C1222, transparent);
       pointer-events: none;
     }
 
@@ -368,7 +435,10 @@
       filter: blur(0);
       transform: translateY(0) scale(1);
     }
-    .cinematic-char.space { width: 0.3em; }
+    .cinematic-word {
+      display: inline-block;
+      white-space: nowrap;
+    }
 
     /* ===== 3D TILT CARDS ===== */
     .tilt-card {
@@ -383,7 +453,7 @@
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.3s;
-      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.25) 0%, transparent 60%);
+      background: radial-gradient(circle at 50% 50%, rgba(124,143,255,0.15) 0%, transparent 60%);
       z-index: 2;
     }
     .tilt-card:hover .tilt-glare { opacity: 1; }
@@ -397,7 +467,9 @@
     /* ===== MARQUEE BAND ===== */
     .skills-marquee {
       overflow: hidden;
-      background: #171717;
+      background: rgba(255,255,255,0.03);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       padding: 1.25rem 0;
       position: relative;
     }
@@ -413,11 +485,11 @@
     }
     .skills-marquee::before {
       left: 0;
-      background: linear-gradient(to right, #171717, transparent);
+      background: linear-gradient(to right, #0C1222, transparent);
     }
     .skills-marquee::after {
       right: 0;
-      background: linear-gradient(to left, #171717, transparent);
+      background: linear-gradient(to left, #0C1222, transparent);
     }
     .skills-marquee-track {
       display: flex;
@@ -427,7 +499,7 @@
       width: max-content;
     }
     .skills-marquee-track span {
-      font-family: 'Fraunces', Georgia, serif;
+      font-family: 'Nebulas', sans-serif;
       font-size: clamp(1rem, 2vw, 1.3rem);
       color: rgba(255,255,255,0.35);
       font-weight: 400;
@@ -437,9 +509,9 @@
       gap: 1.5rem;
     }
     .skills-marquee-track span::after {
-      content: '◆';
+      content: '\25C6';
       font-size: 0.5em;
-      color: #B5895A;
+      color: #7C8FFF;
       opacity: 0.6;
     }
     @keyframes marqueeSlide {
@@ -447,9 +519,17 @@
       100% { transform: translateX(-50%); }
     }
 
-    /* ===== ANIMATED COUNTER ===== */
-    .stat-number {
-      font-variant-numeric: tabular-nums;
+    /* Radial glow overlays for depth */
+    .glow-top {
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 600px;
+      background: radial-gradient(ellipse at center, rgba(124,143,255,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
     }
 
     /* Reduce motion */
@@ -466,10 +546,13 @@
 </head>
 <body>
 
+  <!-- ========== STAR CANVAS ========== -->
+  <canvas id="starCanvas"></canvas>
+
   <!-- ========== NAV ========== -->
-  <nav class="fixed top-0 left-0 right-0 z-50" style="background: rgba(250,249,246,0.88); backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(232,230,225,0.5);">
+  <nav class="fixed top-0 left-0 right-0 z-50" style="background: rgba(12,18,34,0.85); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(255,255,255,0.06);">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="#" class="heading text-xl font-semibold tracking-tight text-ink">Осман</a>
+      <a href="#" class="heading text-xl font-semibold tracking-tight text-ink">Осман Курбанов</a>
       <div class="hidden md:flex items-center gap-8">
         <a href="#results" class="nav-link text-sm font-body">Результаты</a>
         <a href="#cases" class="nav-link text-sm font-body">Кейсы</a>
@@ -478,15 +561,15 @@
         <a href="#contact" class="btn-primary rounded-full px-5 py-2 text-sm">Связаться</a>
       </div>
       <button id="burger" class="md:hidden w-10 h-10 flex flex-col justify-center items-center gap-1.5 cursor-pointer" aria-label="Меню">
-        <span class="w-5 h-px bg-ink transition-transform" id="b1"></span>
-        <span class="w-5 h-px bg-ink transition-opacity" id="b2"></span>
-        <span class="w-5 h-px bg-ink transition-transform" id="b3"></span>
+        <span class="w-5 h-px bg-white transition-transform" id="b1"></span>
+        <span class="w-5 h-px bg-white transition-opacity" id="b2"></span>
+        <span class="w-5 h-px bg-white transition-transform" id="b3"></span>
       </button>
     </div>
   </nav>
 
   <!-- Mobile menu -->
-  <div id="mobileMenu" class="mobile-menu fixed inset-0 z-40 flex flex-col justify-center items-center gap-8" style="background: rgba(250,249,246,0.98); backdrop-filter: blur(20px);">
+  <div id="mobileMenu" class="mobile-menu fixed inset-0 z-40 flex flex-col justify-center items-center gap-8" style="background: rgba(12,18,34,0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
     <a href="#results" class="heading text-3xl text-ink" onclick="closeMobile()">Результаты</a>
     <a href="#cases" class="heading text-3xl text-ink" onclick="closeMobile()">Кейсы</a>
     <a href="#services" class="heading text-3xl text-ink" onclick="closeMobile()">Услуги</a>
@@ -496,8 +579,9 @@
 
 
   <!-- ========== HERO ========== -->
-  <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
-    <div class="max-w-6xl mx-auto px-6 w-full py-16 md:py-20">
+  <section class="relative min-h-screen flex items-center pt-20 overflow-hidden" style="z-index: 1;">
+    <div class="glow-top"></div>
+    <div class="max-w-6xl mx-auto px-6 w-full py-16 md:py-20 relative z-10">
       <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
         <!-- Text -->
         <div>
@@ -525,14 +609,14 @@
 
         <!-- Photo -->
         <div class="reveal-right stagger-2">
-          <div class="hero-photo aspect-[3/4] max-w-md mx-auto md:ml-auto" style="box-shadow: 0 24px 64px rgba(0,0,0,0.08);">
+          <div class="hero-photo aspect-[3/4] max-w-md mx-auto md:ml-auto" style="box-shadow: 0 24px 64px rgba(124,143,255,0.15);">
             <img src="brand_assets/osman.JPG" alt="Осман — маркетолог" class="w-full h-full">
           </div>
         </div>
       </div>
 
       <!-- Stats row -->
-      <div class="reveal stagger-5 mt-20 pt-10 border-t border-stone grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="reveal stagger-5 mt-20 pt-10 grid grid-cols-2 md:grid-cols-4 gap-8" style="border-top: 1px solid rgba(255,255,255,0.06);">
         <div>
           <div class="stat-number" data-count="4" data-suffix="+">0</div>
           <p class="text-silver text-sm mt-2 font-body font-light">лет в маркетинге</p>
@@ -557,7 +641,7 @@
 
 
   <!-- ========== PAIN ========== -->
-  <section class="py-20 md:py-28">
+  <section class="py-20 md:py-28 relative" style="z-index: 1;">
     <div class="max-w-6xl mx-auto px-6">
       <div class="max-w-2xl">
         <p class="reveal label mb-4">Проблема</p>
@@ -581,7 +665,7 @@
 
 
   <!-- ========== SOLUTION ========== -->
-  <section class="py-20 md:py-28">
+  <section class="py-20 md:py-28 relative" style="z-index: 1;">
     <div class="max-w-6xl mx-auto px-6">
       <div class="max-w-2xl mb-14">
         <p class="reveal label mb-4">Решение</p>
@@ -599,21 +683,21 @@
       <div class="grid md:grid-cols-3 gap-5">
         <div class="reveal stagger-1 card p-7">
           <div class="pillar-icon mb-5">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B5895A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21H4.6c-.56 0-.84 0-1.054-.109a1 1 0 01-.437-.437C3 20.24 3 19.96 3 19.4V3"/><path d="M7 14.5l3.5-4 3.5 2.5L18 7"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C8FFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21H4.6c-.56 0-.84 0-1.054-.109a1 1 0 01-.437-.437C3 20.24 3 19.96 3 19.4V3"/><path d="M7 14.5l3.5-4 3.5 2.5L18 7"/></svg>
           </div>
           <h3 class="heading text-xl font-semibold mb-3 text-ink">Аналитика раньше контента</h3>
           <p class="body-text text-sm text-ash">Сначала понимаю, кто ваш клиент, что его останавливает и что заставляет купить. Потом делаю контент.</p>
         </div>
         <div class="reveal stagger-2 card p-7">
           <div class="pillar-icon mb-5">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B5895A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 01-.78-1.63l9.9-10.2a.5.5 0 01.86.46l-1.92 6.02A1 1 0 0013 10h7a1 1 0 01.78 1.63l-9.9 10.2a.5.5 0 01-.86-.46l1.92-6.02A1 1 0 0011 14H4z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C8FFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 01-.78-1.63l9.9-10.2a.5.5 0 01.86.46l-1.92 6.02A1 1 0 0013 10h7a1 1 0 01.78 1.63l-9.9 10.2a.5.5 0 01-.86-.46l1.92-6.02A1 1 0 0011 14H4z"/></svg>
           </div>
           <h3 class="heading text-xl font-semibold mb-3 text-ink">Тест &rarr; результат &rarr; масштаб</h3>
           <p class="body-text text-sm text-ash">Запускаю гипотезы малыми шагами. Оставляю то, что работает. Убираю то, что сжигает бюджет.</p>
         </div>
         <div class="reveal stagger-3 card p-7">
           <div class="pillar-icon mb-5">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B5895A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 000 20 14.5 14.5 0 000-20"/><path d="M2 12h20"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C8FFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 000 20 14.5 14.5 0 000-20"/><path d="M2 12h20"/></svg>
           </div>
           <h3 class="heading text-xl font-semibold mb-3 text-ink">Онлайн + офлайн</h3>
           <p class="body-text text-sm text-ash">Геосервисы, таргет, инфлюенсеры, акции, мероприятия — работаю с полным циклом, не только с Instagram.</p>
@@ -626,7 +710,7 @@
 
 
   <!-- ========== RESULTS ========== -->
-  <section id="results" class="py-20 md:py-28">
+  <section id="results" class="py-20 md:py-28 relative" style="z-index: 1;">
     <div class="max-w-6xl mx-auto px-6">
       <p class="reveal label mb-4">Результаты</p>
       <h2 class="reveal stagger-1 heading text-3xl sm:text-4xl md:text-5xl mb-12 text-ink">
@@ -678,7 +762,7 @@
 
 
   <!-- ========== CASES ========== -->
-  <section id="cases" class="py-20 md:py-28">
+  <section id="cases" class="py-20 md:py-28 relative" style="z-index: 1;">
     <div class="max-w-6xl mx-auto px-6">
       <p class="reveal label mb-4">Опыт</p>
       <h2 class="reveal stagger-1 heading text-3xl sm:text-4xl md:text-5xl mb-14 text-ink">
@@ -742,12 +826,12 @@
 
 
   <!-- ========== ABOUT ========== -->
-  <section id="about" class="py-20 md:py-28">
+  <section id="about" class="py-20 md:py-28 relative" style="z-index: 1;">
     <div class="max-w-6xl mx-auto px-6">
       <div class="grid md:grid-cols-5 gap-12 md:gap-16 items-start">
         <!-- Photo -->
         <div class="reveal-left md:col-span-2">
-          <div class="photo-about aspect-[3/4] w-full" style="box-shadow: 0 16px 48px rgba(0,0,0,0.06);">
+          <div class="photo-about aspect-[3/4] w-full" style="box-shadow: 0 16px 48px rgba(124,143,255,0.1);">
             <img src="brand_assets/osman.JPG" alt="Осман — маркетолог">
           </div>
         </div>
@@ -772,7 +856,7 @@
 
 
   <!-- ========== SERVICES ========== -->
-  <section id="services" class="py-20 md:py-28">
+  <section id="services" class="py-20 md:py-28 relative" style="z-index: 1;">
     <div class="max-w-6xl mx-auto px-6">
       <p class="reveal label mb-4">Услуги</p>
       <h2 class="reveal stagger-1 heading text-3xl sm:text-4xl md:text-5xl mb-12 text-ink">
@@ -781,35 +865,35 @@
 
       <div class="reveal stagger-2 flex flex-wrap gap-3">
         <div class="service-tag">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B5895A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C8FFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
           Аудит текущего маркетинга
         </div>
         <div class="service-tag">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B5895A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C8FFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
           Система привлечения клиентов
         </div>
         <div class="service-tag">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B5895A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C8FFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
           Ведение соцсетей с фокусом на результат
         </div>
         <div class="service-tag">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B5895A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C8FFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg>
           Таргетированная реклама
         </div>
         <div class="service-tag">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B5895A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1116 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C8FFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1116 0z"/><circle cx="12" cy="10" r="3"/></svg>
           Упаковка в геосервисы
         </div>
         <div class="service-tag">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B5895A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C8FFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
           Работа с инфлюенсерами
         </div>
         <div class="service-tag">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B5895A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C8FFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
           Офлайн-мероприятия и акции
         </div>
         <div class="service-tag">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B5895A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C8FFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
           Позиционирование и ребрендинг
         </div>
       </div>
@@ -820,7 +904,7 @@
 
 
   <!-- ========== SKILLS MARQUEE ========== -->
-  <div class="skills-marquee">
+  <div class="skills-marquee" style="z-index: 1; position: relative;">
     <div class="skills-marquee-track">
       <span>Стратегия</span>
       <span>Таргет</span>
@@ -851,7 +935,7 @@
   </div>
 
   <!-- ========== CTA ========== -->
-  <section id="contact" class="py-24 md:py-32">
+  <section id="contact" class="py-24 md:py-32 relative" style="z-index: 1;">
     <div class="max-w-6xl mx-auto px-6 text-center">
       <p class="reveal label mb-4">Контакт</p>
       <h2 class="reveal stagger-1 heading text-4xl sm:text-5xl md:text-6xl mb-6 text-ink">
@@ -865,11 +949,11 @@
       </p>
 
       <div class="reveal stagger-4 flex flex-col sm:flex-row justify-center gap-4">
-        <a href="https://t.me/" target="_blank" rel="noopener" class="magnetic-btn btn-primary rounded-full px-10 py-4 text-base font-body inline-flex items-center justify-center gap-3">
+        <a href="https://t.me/kurbanovvv22" target="_blank" rel="noopener" class="magnetic-btn btn-primary rounded-full px-10 py-4 text-base font-body inline-flex items-center justify-center gap-3">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.492-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
           Написать в Telegram
         </a>
-        <a href="https://wa.me/" target="_blank" rel="noopener" class="magnetic-btn btn-outline rounded-full px-10 py-4 text-base font-body inline-flex items-center justify-center gap-3">
+        <a href="https://wa.me/79285684488" target="_blank" rel="noopener" class="magnetic-btn btn-outline rounded-full px-10 py-4 text-base font-body inline-flex items-center justify-center gap-3">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Связаться в WhatsApp
         </a>
@@ -879,14 +963,14 @@
 
 
   <!-- ========== FOOTER ========== -->
-  <footer class="border-t border-stone">
+  <footer style="border-top: 1px solid rgba(255,255,255,0.06); position: relative; z-index: 1;">
     <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row justify-between items-center gap-4">
       <p class="text-silver text-sm font-body">&copy; 2024 Осман. Все права защищены.</p>
       <div class="flex gap-6">
-        <a href="https://t.me/" target="_blank" rel="noopener" class="text-silver hover:text-warm transition-colors" aria-label="Telegram">
+        <a href="https://t.me/kurbanovvv22" target="_blank" rel="noopener" class="text-silver hover:text-warm transition-colors" aria-label="Telegram">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.492-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
         </a>
-        <a href="https://wa.me/" target="_blank" rel="noopener" class="text-silver hover:text-warm transition-colors" aria-label="WhatsApp">
+        <a href="https://wa.me/79285684488" target="_blank" rel="noopener" class="text-silver hover:text-warm transition-colors" aria-label="WhatsApp">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         </a>
         <a href="https://instagram.com/" target="_blank" rel="noopener" class="text-silver hover:text-warm transition-colors" aria-label="Instagram">
@@ -898,6 +982,65 @@
 
 
   <script>
+    // ===== STAR PARTICLES CANVAS =====
+    (function() {
+      const canvas = document.getElementById('starCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let stars = [];
+      const STAR_COUNT = 200;
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      function createStars() {
+        stars = [];
+        for (let i = 0; i < STAR_COUNT; i++) {
+          stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 1.5 + 0.5,
+            opacity: Math.random() * 0.5 + 0.2,
+            speedX: (Math.random() - 0.5) * 0.15,
+            speedY: (Math.random() - 0.5) * 0.1,
+            twinkleSpeed: Math.random() * 0.005 + 0.002,
+            twinklePhase: Math.random() * Math.PI * 2
+          });
+        }
+      }
+      createStars();
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const time = Date.now() * 0.001;
+        stars.forEach(star => {
+          star.x += star.speedX;
+          star.y += star.speedY;
+
+          // Wrap around edges
+          if (star.x < 0) star.x = canvas.width;
+          if (star.x > canvas.width) star.x = 0;
+          if (star.y < 0) star.y = canvas.height;
+          if (star.y > canvas.height) star.y = 0;
+
+          // Twinkle
+          const twinkle = Math.sin(time * star.twinkleSpeed * 60 + star.twinklePhase) * 0.3 + 0.7;
+          const alpha = star.opacity * twinkle;
+
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -958,19 +1101,25 @@
       let html = '';
       let charIndex = 0;
       parts.forEach(part => {
-        if (part.cls) html += `<span class="${part.cls}">`;
-        for (const ch of part.text) {
-          if (ch === ' ') {
-            html += `<span class="cinematic-char space" style="transition-delay:${charIndex * 35}ms"> </span>`;
-          } else {
-            html += `<span class="cinematic-char" style="transition-delay:${charIndex * 35}ms">${ch}</span>`;
+        const words = part.text.split(' ');
+        words.forEach((word, wi) => {
+          if (word.length > 0) {
+            const wrapCls = part.cls ? `cinematic-word ${part.cls}` : 'cinematic-word';
+            html += `<span class="${wrapCls}">`;
+            for (const ch of word) {
+              html += `<span class="cinematic-char" style="transition-delay:${charIndex * 35}ms">${ch}</span>`;
+              charIndex++;
+            }
+            html += '</span>';
           }
-          charIndex++;
-        }
-        if (part.cls) html += '</span>';
+          // add space between words (not after last word)
+          if (wi < words.length - 1) {
+            html += ' ';
+            charIndex++;
+          }
+        });
       });
       heading.innerHTML = html;
-      // trigger after a small delay
       setTimeout(() => {
         heading.querySelectorAll('.cinematic-char').forEach(ch => ch.classList.add('revealed'));
       }, 300);
@@ -1021,7 +1170,7 @@
           const tiltY = x * 14;
           card.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.03,1.03,1.03)`;
           if (glare) {
-            glare.style.background = `radial-gradient(circle at ${(x + 0.5) * 100}% ${(y + 0.5) * 100}%, rgba(181,137,90,0.15) 0%, transparent 60%)`;
+            glare.style.background = `radial-gradient(circle at ${(x + 0.5) * 100}% ${(y + 0.5) * 100}%, rgba(124,143,255,0.15) 0%, transparent 60%)`;
           }
         });
         card.addEventListener('mouseleave', () => {
