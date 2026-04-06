@@ -67,7 +67,7 @@
       theme: {
         extend: {
           colors: {
-            space: '#0C1222',
+            space: '#0A1628',
             'space-light': '#111a2e',
             'space-card': 'rgba(255,255,255,0.05)',
             'space-border': 'rgba(255,255,255,0.1)',
@@ -93,7 +93,7 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Nebulas', sans-serif;
-      background: #0C1222;
+      background: #0A1628;
       color: #FFFFFF;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
@@ -105,6 +105,18 @@
       inset: 0;
       z-index: 0;
       pointer-events: none;
+    }
+
+    /* Dot grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.07;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px);
+      background-size: 40px 40px;
     }
 
     /* Subtle grain */
@@ -125,7 +137,7 @@
     }
 
     ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #0C1222; }
+    ::-webkit-scrollbar-track { background: #0A1628; }
     ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: #7C8FFF; }
 
@@ -190,7 +202,7 @@
     /* Buttons */
     .btn-primary {
       background: #F5F5F0;
-      color: #0C1222;
+      color: #0A1628;
       font-family: 'Nebulas', sans-serif;
       font-weight: 500;
       letter-spacing: 0.01em;
@@ -214,7 +226,7 @@
     }
     .btn-outline:hover {
       background: #F5F5F0;
-      color: #0C1222;
+      color: #0A1628;
       transform: translateY(-2px);
     }
     .btn-outline:active { transform: scale(0.98); }
@@ -423,7 +435,7 @@
       left: 0;
       right: 0;
       height: 30%;
-      background: linear-gradient(to top, #0C1222, transparent);
+      background: linear-gradient(to top, #0A1628, transparent);
       pointer-events: none;
     }
 
@@ -439,7 +451,7 @@
       background: radial-gradient(circle, #7C8FFF 0%, transparent 70%);
     }
     .glow-purple {
-      background: radial-gradient(circle, #6B5CE7 0%, transparent 70%);
+      background: radial-gradient(circle, #3B5998 0%, transparent 70%);
     }
     .glow-cyan {
       background: radial-gradient(circle, #38BDF8 0%, transparent 70%);
@@ -510,11 +522,11 @@
     }
     .skills-marquee::before {
       left: 0;
-      background: linear-gradient(to right, #0C1222, transparent);
+      background: linear-gradient(to right, #0A1628, transparent);
     }
     .skills-marquee::after {
       right: 0;
-      background: linear-gradient(to left, #0C1222, transparent);
+      background: linear-gradient(to left, #0A1628, transparent);
     }
     .skills-marquee-track {
       display: flex;
@@ -552,7 +564,7 @@
       transform: translateX(-50%);
       width: 900px;
       height: 700px;
-      background: radial-gradient(ellipse at center, rgba(124,143,255,0.15) 0%, rgba(107,92,231,0.05) 40%, transparent 70%);
+      background: radial-gradient(ellipse at center, rgba(80,120,220,0.15) 0%, rgba(59,89,152,0.05) 40%, transparent 70%);
       pointer-events: none;
       z-index: 0;
     }
@@ -1020,11 +1032,12 @@
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
       let stars = [];
-      const STAR_COUNT = 200;
+      let shootingStars = [];
+      const STAR_COUNT = 300;
 
       function resize() {
         canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        canvas.height = document.documentElement.scrollHeight;
       }
       resize();
       window.addEventListener('resize', resize);
@@ -1035,39 +1048,75 @@
           stars.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            size: Math.random() * 1.5 + 0.5,
-            opacity: Math.random() * 0.5 + 0.2,
-            speedX: (Math.random() - 0.5) * 0.15,
-            speedY: (Math.random() - 0.5) * 0.1,
-            twinkleSpeed: Math.random() * 0.005 + 0.002,
+            size: Math.random() * 1.8 + 0.3,
+            baseOpacity: Math.random() * 0.5 + 0.15,
+            speedX: (Math.random() - 0.5) * 0.2,
+            speedY: -(Math.random() * 0.15 + 0.02),
+            twinkleSpeed: Math.random() * 0.02 + 0.005,
             twinklePhase: Math.random() * Math.PI * 2
           });
         }
       }
       createStars();
 
+      function spawnShootingStar() {
+        shootingStars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height * 0.5,
+          length: Math.random() * 80 + 40,
+          speed: Math.random() * 4 + 3,
+          angle: Math.PI * 0.15 + Math.random() * 0.2,
+          opacity: 1,
+          decay: Math.random() * 0.015 + 0.008
+        });
+      }
+
+      // Spawn a shooting star every 3-7 seconds
+      setInterval(spawnShootingStar, 3000 + Math.random() * 4000);
+
       function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const time = Date.now() * 0.001;
+
+        // Draw stars
         stars.forEach(star => {
           star.x += star.speedX;
           star.y += star.speedY;
-
-          // Wrap around edges
           if (star.x < 0) star.x = canvas.width;
           if (star.x > canvas.width) star.x = 0;
           if (star.y < 0) star.y = canvas.height;
           if (star.y > canvas.height) star.y = 0;
 
-          // Twinkle
-          const twinkle = Math.sin(time * star.twinkleSpeed * 60 + star.twinklePhase) * 0.3 + 0.7;
-          const alpha = star.opacity * twinkle;
+          const twinkle = Math.sin(time * star.twinkleSpeed * 60 + star.twinklePhase) * 0.4 + 0.6;
+          const alpha = star.baseOpacity * twinkle;
 
           ctx.beginPath();
           ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+          ctx.fillStyle = `rgba(200, 220, 255, ${alpha})`;
           ctx.fill();
         });
+
+        // Draw shooting stars
+        for (let i = shootingStars.length - 1; i >= 0; i--) {
+          const s = shootingStars[i];
+          const tailX = s.x - Math.cos(s.angle) * s.length;
+          const tailY = s.y - Math.sin(s.angle) * s.length;
+          const grad = ctx.createLinearGradient(s.x, s.y, tailX, tailY);
+          grad.addColorStop(0, `rgba(200, 220, 255, ${s.opacity})`);
+          grad.addColorStop(1, 'rgba(200, 220, 255, 0)');
+          ctx.beginPath();
+          ctx.moveTo(tailX, tailY);
+          ctx.lineTo(s.x, s.y);
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+
+          s.x += Math.cos(s.angle) * s.speed;
+          s.y += Math.sin(s.angle) * s.speed;
+          s.opacity -= s.decay;
+          if (s.opacity <= 0) shootingStars.splice(i, 1);
+        }
+
         requestAnimationFrame(animate);
       }
       animate();
