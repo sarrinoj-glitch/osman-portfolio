@@ -569,6 +569,65 @@
       z-index: 0;
     }
 
+    /* ===== PROJECT MODAL ===== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: rgba(5,10,20,0.8);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-content {
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.04) 100%);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-top: 1px solid rgba(255,255,255,0.25);
+      border-radius: 20px;
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+      max-width: 560px;
+      width: 100%;
+      padding: 2.5rem;
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .modal-overlay.active .modal-content {
+      transform: translateY(0) scale(1);
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      color: rgba(255,255,255,0.6);
+    }
+    .modal-close:hover {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+    }
+    .card[data-project] { cursor: pointer; }
+
     /* Reduce motion */
     @media (prefers-reduced-motion: reduce) {
       .reveal, .reveal-left, .reveal-right { transition: none; opacity: 1; transform: none; }
@@ -631,7 +690,7 @@
             А не просто ведёт Instagram.
           </p>
           <p class="reveal stagger-3 body-text text-base text-silver mb-10">
-            3+ года на одном проекте. Рост аудитории с нуля. Турнир на 92 команды. Контент до 1 млн просмотров.
+            3+ года на одном проекте. Рост аудитории с нуля. Один из крупнейших киберспортивных турниров в Дагестане. 30+ млн просмотров контента.
           </p>
           <div class="reveal stagger-4 flex flex-wrap gap-3">
             <a href="#cases" class="btn-primary rounded-full px-7 py-3 text-sm inline-flex items-center gap-2">
@@ -659,16 +718,16 @@
           <p class="text-silver text-sm mt-2 font-body font-light">лет в маркетинге</p>
         </div>
         <div>
-          <div class="stat-number" data-count="13">0</div>
+          <div class="stat-number" data-count="20" data-suffix="+">0</div>
           <p class="text-silver text-sm mt-2 font-body font-light">проектов</p>
         </div>
         <div>
-          <div class="stat-number" data-count="1" data-suffix="М+">0</div>
+          <div class="stat-number" data-count="30" data-suffix="М+">0</div>
           <p class="text-silver text-sm mt-2 font-body font-light">просмотров контента</p>
         </div>
         <div>
           <div class="stat-number" data-count="92">0</div>
-          <p class="text-silver text-sm mt-2 font-body font-light">команды на турнире</p>
+          <p class="text-silver text-sm mt-2 font-body font-light">команды на турнире CS2</p>
         </div>
       </div>
     </div>
@@ -768,12 +827,12 @@
             </thead>
             <tbody>
               <tr>
-                <td class="text-ink font-normal">Организовал турнир по CS2</td>
-                <td class="text-ash">92 команды-участника, рост узнаваемости бренда</td>
+                <td class="text-ink font-normal">Провёл один из крупнейших турниров по CS2 в Дагестане</td>
+                <td class="text-ash">92 команды, спонсоры, рост узнаваемости бренда</td>
               </tr>
               <tr>
                 <td class="text-ink font-normal">Контент в соцсетях</td>
-                <td class="text-ash">До 1 000 000+ просмотров на отдельных публикациях</td>
+                <td class="text-ash">30 000 000+ суммарных просмотров</td>
               </tr>
               <tr>
                 <td class="text-ink font-normal">Стабильный прирост клиентов</td>
@@ -808,11 +867,16 @@
     <div class="max-w-6xl mx-auto px-6 relative" style="z-index:1;">
       <p class="reveal label mb-4">Опыт</p>
       <h2 class="reveal stagger-1 heading text-3xl sm:text-4xl md:text-5xl mb-14 text-ink">
-        13 проектов за 4 года.
+        20+ проектов за 4 года.
       </h2>
 
       <!-- Flagship -->
-      <div class="reveal stagger-2 card rounded-2xl p-8 md:p-10 mb-6 relative overflow-hidden">
+      <div class="reveal stagger-2 card rounded-2xl p-8 md:p-10 mb-6 relative overflow-hidden"
+        data-project="gogame"
+        data-title="Go Game"
+        data-sub="Сеть из 4 компьютерных клубов, Махачкала — 3,5 года"
+        data-desc="Пришёл как SMM-специалист, вырос до маркетолога с процентом от выручки. Выстроил полную систему привлечения: Instagram, 2ГИС, Яндекс.Карты, таргет. Провёл один из крупнейших турниров по CS2 в Дагестане (92 команды, привлечение спонсоров). Организовывал тематические мероприятия, акции и коллаборации. Провёл ребрендинг с «Кибер Арена» в «Go Game»."
+        data-results="Рост аудитории с нуля до десятков тысяч подписчиков • 30М+ просмотров контента • +10–15% новых клиентов ежемесячно • Новый брендбук и позиционирование • Рост позиций в геосервисах">
         <div class="flex items-center gap-3 mb-5">
           <span class="badge badge-accent">Флагманский кейс</span>
           <span class="text-silver text-sm font-body">3,5 года</span>
@@ -826,73 +890,73 @@
 
       <!-- Grid -->
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div class="reveal stagger-1 card tilt-card rounded-xl p-6 relative overflow-hidden">
+        <div class="reveal stagger-1 card tilt-card rounded-xl p-6 relative overflow-hidden" data-project="vavilon" data-title="Vavilon" data-sub="Кинотеатр на крыше" data-desc="Полный маркетинг: SMM, ведение соцсетей, упаковка геосервисов (2ГИС, Яндекс.Карты), настройка таргетированной рекламы." data-results="Рост посещаемости и узнаваемости • Привлечение новой аудитории через таргет">
           <div class="tilt-glare"></div>
           <h4 class="heading text-lg font-semibold mb-1 text-ink">Vavilon</h4>
           <p class="text-silver text-xs mb-3 font-body">Кинотеатр на крыше</p>
           <p class="body-text text-sm text-ash">SMM + маркетинг, геосервисы, таргет</p>
         </div>
-        <div class="reveal stagger-2 card tilt-card rounded-xl p-6 relative overflow-hidden">
+        <div class="reveal stagger-2 card tilt-card rounded-xl p-6 relative overflow-hidden" data-project="ishop" data-title="iShop" data-sub="Магазин техники" data-desc="Упаковка бренда и ведение соцсетей. Создание контент-стратегии, визуальной айдентики для соцсетей." data-results="Оформление и запуск соцсетей с нуля • Рост вовлечённости аудитории">
           <div class="tilt-glare"></div>
           <h4 class="heading text-lg font-semibold mb-1 text-ink">iShop</h4>
           <p class="text-silver text-xs mb-3 font-body">Магазин техники</p>
           <p class="body-text text-sm text-ash">Упаковка и ведение</p>
         </div>
-        <div class="reveal stagger-3 card tilt-card rounded-xl p-6 relative overflow-hidden">
+        <div class="reveal stagger-3 card tilt-card rounded-xl p-6 relative overflow-hidden" data-project="enzhi" data-title="Энжи (Коллектив)" data-sub="Сеть кофеен" data-desc="Ведение контента и продвижение сети кофеен. Работа с контент-планом, съёмки, публикации, взаимодействие с аудиторией." data-results="Рост подписчиков и охватов • Увеличение офлайн-трафика">
           <div class="tilt-glare"></div>
-          <h4 class="heading text-lg font-semibold mb-1 text-ink">Энджи (Коллектив)</h4>
+          <h4 class="heading text-lg font-semibold mb-1 text-ink">Энжи (Коллектив)</h4>
           <p class="text-silver text-xs mb-3 font-body">Сеть кофеен</p>
           <p class="body-text text-sm text-ash">Контент и продвижение</p>
         </div>
-        <div class="reveal stagger-4 card tilt-card rounded-xl p-6 relative overflow-hidden">
+        <div class="reveal stagger-4 card tilt-card rounded-xl p-6 relative overflow-hidden" data-project="flamingo" data-title="Flamingo" data-sub="Кастомная одежда" data-desc="Один из первых проектов. Запуск SMM с нуля: упаковка, контент, продвижение бренда кастомной одежды." data-results="Старт карьеры в маркетинге • Рост бренда с нуля">
           <div class="tilt-glare"></div>
           <h4 class="heading text-lg font-semibold mb-1 text-ink">Flamingo</h4>
           <p class="text-silver text-xs mb-3 font-body">Кастомная одежда</p>
           <p class="body-text text-sm text-ash">Старт карьеры, рост с нуля</p>
         </div>
-        <div class="reveal stagger-5 card tilt-card rounded-xl p-6 relative overflow-hidden">
+        <div class="reveal stagger-5 card tilt-card rounded-xl p-6 relative overflow-hidden" data-project="machachev" data-title="Автодом Махачев" data-sub="Совместный проект с Исламом Махачевым" data-desc="Участие в совместном проекте с Исламом Махачевым. Работа над маркетингом и продвижением автобизнеса." data-results="Коллаборация с топовым спортсменом • Охват широкой аудитории">
           <div class="tilt-glare"></div>
           <h4 class="heading text-lg font-semibold mb-1 text-ink">Автодом Махачев</h4>
           <p class="text-silver text-xs mb-3 font-body">Совместный проект</p>
           <p class="body-text text-sm text-ash">С Исламом Махачевым</p>
         </div>
-        <div class="reveal stagger-6 card tilt-card rounded-xl p-6 relative overflow-hidden">
+        <div class="reveal stagger-6 card tilt-card rounded-xl p-6 relative overflow-hidden" data-project="elektrobyt" data-title="Электробыт" data-sub="Магазин бытовой техники" data-desc="Маркетинг и продвижение магазина бытовой техники. SMM, контент, работа с геосервисами." data-results="Рост заявок через онлайн-каналы • Упаковка геосервисов">
           <div class="tilt-glare"></div>
           <h4 class="heading text-lg font-semibold mb-1 text-ink">Электробыт</h4>
           <p class="text-silver text-xs mb-3 font-body">Магазин бытовой техники</p>
           <p class="body-text text-sm text-ash">Маркетинг и продвижение</p>
         </div>
-        <div class="reveal stagger-7 card tilt-card rounded-xl p-6 relative overflow-hidden">
+        <div class="reveal stagger-7 card tilt-card rounded-xl p-6 relative overflow-hidden" data-project="vr" data-title="VR-клуб" data-sub="Клуб виртуальной реальности" data-desc="SMM и привлечение клиентов для клуба виртуальной реальности. Контент-стратегия, таргет." data-results="Привлечение новой аудитории • Рост посещаемости клуба">
           <div class="tilt-glare"></div>
           <h4 class="heading text-lg font-semibold mb-1 text-ink">VR-клуб</h4>
           <p class="text-silver text-xs mb-3 font-body">Клуб виртуальной реальности</p>
           <p class="body-text text-sm text-ash">SMM и привлечение клиентов</p>
         </div>
-        <div class="reveal stagger-8 card tilt-card rounded-xl p-6 relative overflow-hidden">
+        <div class="reveal stagger-8 card tilt-card rounded-xl p-6 relative overflow-hidden" data-project="villa" data-title="Villa Memory" data-sub="Загородные домики" data-desc="Упаковка и продвижение загородного отдыха. Контент, геосервисы, работа с отзывами." data-results="Запуск онлайн-присутствия • Рост бронирований">
           <div class="tilt-glare"></div>
           <h4 class="heading text-lg font-semibold mb-1 text-ink">Villa Memory</h4>
           <p class="text-silver text-xs mb-3 font-body">Загородные домики</p>
           <p class="body-text text-sm text-ash">Упаковка и продвижение</p>
         </div>
-        <div class="reveal stagger-1 card tilt-card rounded-xl p-6 relative overflow-hidden">
+        <div class="reveal stagger-1 card tilt-card rounded-xl p-6 relative overflow-hidden" data-project="ff" data-title="FF.formula" data-sub="Проект" data-desc="Маркетинг и создание контента для проекта FF.formula." data-results="Контент-стратегия и продвижение">
           <div class="tilt-glare"></div>
           <h4 class="heading text-lg font-semibold mb-1 text-ink">FF.formula</h4>
           <p class="text-silver text-xs mb-3 font-body">Проект</p>
           <p class="body-text text-sm text-ash">Маркетинг и контент</p>
         </div>
-        <div class="reveal stagger-2 card tilt-card rounded-xl p-6 relative overflow-hidden">
+        <div class="reveal stagger-2 card tilt-card rounded-xl p-6 relative overflow-hidden" data-project="inside" data-title="Inside" data-sub="Кофейня" data-desc="Контент и продвижение кофейни. SMM, фото/видео контент, работа с аудиторией." data-results="Рост подписчиков и узнаваемости бренда">
           <div class="tilt-glare"></div>
           <h4 class="heading text-lg font-semibold mb-1 text-ink">Inside</h4>
           <p class="text-silver text-xs mb-3 font-body">Кофейня</p>
           <p class="body-text text-sm text-ash">Контент и продвижение</p>
         </div>
-        <div class="reveal stagger-3 card tilt-card rounded-xl p-6 relative overflow-hidden">
+        <div class="reveal stagger-3 card tilt-card rounded-xl p-6 relative overflow-hidden" data-project="edostav" data-title="Едостав" data-sub="Доставка еды" data-desc="SMM и маркетинг сервиса доставки еды. Контент, акции, работа с аудиторией." data-results="Рост заказов через соцсети • Увеличение охватов">
           <div class="tilt-glare"></div>
           <h4 class="heading text-lg font-semibold mb-1 text-ink">Едостав</h4>
           <p class="text-silver text-xs mb-3 font-body">Доставка еды</p>
           <p class="body-text text-sm text-ash">SMM и маркетинг</p>
         </div>
-        <div class="reveal stagger-4 card tilt-card rounded-xl p-6 relative overflow-hidden">
+        <div class="reveal stagger-4 card tilt-card rounded-xl p-6 relative overflow-hidden" data-project="avadan" data-title="Авадан" data-sub="Туристическое агентство" data-desc="Упаковка и привлечение клиентов для туристического агентства. SMM, контент, таргет." data-results="Привлечение клиентов через соцсети • Упаковка бренда">
           <div class="tilt-glare"></div>
           <h4 class="heading text-lg font-semibold mb-1 text-ink">Авадан</h4>
           <p class="text-silver text-xs mb-3 font-body">Туристическое агентство</p>
@@ -1043,6 +1107,19 @@
     </div>
   </section>
 
+
+  <!-- ========== PROJECT MODAL ========== -->
+  <div id="projectModal" class="modal-overlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal-content relative">
+      <button class="modal-close" onclick="closeModal()" aria-label="Закрыть">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <h3 id="modalTitle" class="heading text-2xl md:text-3xl font-bold mb-2 text-white"></h3>
+      <p id="modalSub" class="text-sm mb-5" style="color:rgba(255,255,255,0.4);"></p>
+      <p id="modalDesc" class="body-text text-base mb-5" style="color:rgba(255,255,255,0.7);"></p>
+      <div id="modalResults" class="body-text text-sm" style="color:rgba(255,255,255,0.5);"></div>
+    </div>
+  </div>
 
   <!-- ========== FOOTER ========== -->
   <footer style="border-top: 1px solid rgba(255,255,255,0.06); position: relative; z-index: 1;">
@@ -1316,6 +1393,32 @@
         });
       });
     })();
+
+    // ===== 5. PROJECT MODAL =====
+    const modal = document.getElementById('projectModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalSub = document.getElementById('modalSub');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalResults = document.getElementById('modalResults');
+
+    document.querySelectorAll('[data-project]').forEach(card => {
+      card.addEventListener('click', () => {
+        modalTitle.textContent = card.dataset.title;
+        modalSub.textContent = card.dataset.sub;
+        modalDesc.textContent = card.dataset.desc;
+        const results = card.dataset.results.split(' • ');
+        modalResults.innerHTML = '<p class="label mb-3" style="font-size:0.7rem;">Результаты</p>' +
+          results.map(r => '<p style="padding-left:1rem;position:relative;margin-bottom:0.4rem;"><span style="position:absolute;left:0;top:0.5em;width:5px;height:5px;border-radius:50%;background:#7C8FFF;"></span>' + r + '</p>').join('');
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   </script>
 </body>
 </html>
