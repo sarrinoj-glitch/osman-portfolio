@@ -398,6 +398,153 @@
       border: none;
     }
 
+    /* Stats Gallery Button */
+    .stats-gallery-btn {
+      background: linear-gradient(135deg, #5B6BFF 0%, #7C8FFF 100%);
+      color: #FFFFFF;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .stats-gallery-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(91, 107, 255, 0.35);
+    }
+    .stats-gallery-btn:active { transform: scale(0.97); }
+    .stats-gallery-btn:focus-visible { outline: 2px solid #7C8FFF; outline-offset: 3px; }
+    .stats-gallery-btn__pulse {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 2px solid rgba(124, 143, 255, 0.6);
+      animation: statsPulse 2s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes statsPulse {
+      0%, 100% { opacity: 0; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.06); }
+    }
+
+    /* Stats Gallery Modal */
+    .stats-gallery-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(5, 10, 20, 0.92);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+    .stats-gallery-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .stats-gallery-container {
+      position: relative;
+      width: 90vw;
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .stats-gallery-close {
+      position: absolute;
+      top: -48px;
+      right: 0;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      z-index: 10;
+    }
+    .stats-gallery-close:hover { background: rgba(255,255,255,0.2); transform: scale(1.1); }
+    .stats-gallery-track {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 16px;
+      position: relative;
+      display: flex;
+      transition: none;
+    }
+    .stats-gallery-track img {
+      min-width: 100%;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 16px;
+      display: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .stats-gallery-track img.active {
+      display: block;
+      animation: galleryFadeIn 0.3s ease;
+    }
+    @keyframes galleryFadeIn {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .stats-gallery-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      z-index: 5;
+    }
+    .stats-gallery-arrow:hover { background: rgba(255,255,255,0.2); transform: translateY(-50%) scale(1.1); }
+    .stats-gallery-arrow--left { left: -56px; }
+    .stats-gallery-arrow--right { right: -56px; }
+    .stats-gallery-progress {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+    }
+    .stats-gallery-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      transition: background 0.25s, transform 0.25s, width 0.25s;
+    }
+    .stats-gallery-dot.active {
+      background: #7C8FFF;
+      width: 24px;
+      border-radius: 4px;
+      transform: scale(1);
+    }
+    @media (max-width: 640px) {
+      .stats-gallery-arrow--left { left: 8px; }
+      .stats-gallery-arrow--right { right: 8px; }
+      .stats-gallery-arrow { width: 36px; height: 36px; background: rgba(5,10,20,0.7); }
+      .stats-gallery-container { max-width: 95vw; }
+      .stats-gallery-close { top: -44px; }
+    }
+
     /* Mobile menu */
     .mobile-menu {
       transform: translateX(100%);
@@ -850,12 +997,56 @@
                 <td class="text-ink font-normal">Таргет в ВК, 2ГИС, Яндекс.Картах</td>
                 <td class="text-ash">Рост трафика и заявок через платные каналы</td>
               </tr>
+              <tr>
+                <td class="text-ink font-normal">Комьюнити-менеджмент</td>
+                <td class="text-ash">Работа с сообществом, вовлечение аудитории</td>
+              </tr>
+              <tr>
+                <td class="text-ink font-normal">Развитие сервиса в команде</td>
+                <td class="text-ash">Обучающие уроки для новых админов, тренинги для коллектива</td>
+              </tr>
             </tbody>
           </table>
         </div>
+
+        <!-- Stats Gallery Button -->
+        <div class="mt-8 flex justify-center">
+          <button id="statsGalleryBtn" class="stats-gallery-btn group relative inline-flex items-center gap-3 px-7 py-3.5 rounded-xl font-body font-medium text-sm cursor-pointer" onclick="openStatsGallery()">
+            <span class="stats-gallery-btn__pulse"></span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 16 4-8 4 4 6-6"/></svg>
+            Динамика роста клиентов
+            <svg class="transition-transform duration-200 group-hover:translate-x-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+
       </div>
     </div>
   </section>
+
+  <!-- Stats Gallery Modal -->
+  <div id="statsGalleryModal" class="stats-gallery-overlay" onclick="if(event.target===this)closeStatsGallery()">
+    <div class="stats-gallery-container">
+      <button class="stats-gallery-close" onclick="closeStatsGallery()" aria-label="Закрыть">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <div class="stats-gallery-track" id="statsGalleryTrack">
+        <img src="brand_screenshots/gogame-stats-1.png" alt="Статистика Go Game 1" loading="lazy">
+        <img src="brand_screenshots/gogame-stats-2.png" alt="Статистика Go Game 2" loading="lazy">
+        <img src="brand_screenshots/gogame-stats-3.png" alt="Статистика Go Game 3" loading="lazy">
+        <img src="brand_screenshots/gogame-stats-4.png" alt="Статистика Go Game 4" loading="lazy">
+        <img src="brand_screenshots/gogame-stats-5.png" alt="Статистика Go Game 5" loading="lazy">
+        <img src="brand_screenshots/gogame-stats-6.png" alt="Статистика Go Game 6" loading="lazy">
+        <img src="brand_screenshots/gogame-stats-7.png" alt="Статистика Go Game 7" loading="lazy">
+      </div>
+      <button class="stats-gallery-arrow stats-gallery-arrow--left" onclick="galleryPrev()" aria-label="Назад">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button class="stats-gallery-arrow stats-gallery-arrow--right" onclick="galleryNext()" aria-label="Вперёд">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      <div class="stats-gallery-progress" id="statsGalleryProgress"></div>
+    </div>
+  </div>
 
   <div class="divider"></div>
 
@@ -876,7 +1067,7 @@
         data-title="Go Game"
         data-sub="Сеть из 4 компьютерных клубов, Махачкала — 3,5 года"
         data-desc="Пришёл как SMM-специалист, вырос до маркетолога с процентом от выручки. Выстроил полную систему привлечения: Instagram, 2ГИС, Яндекс.Карты, таргет. Провёл один из крупнейших турниров по CS2 в Дагестане (92 команды, привлечение спонсоров). Организовывал тематические мероприятия, акции и коллаборации. Провёл ребрендинг с «Кибер Арена» в «Go Game»."
-        data-results="Рост аудитории с нуля до десятков тысяч подписчиков • 30М+ просмотров контента • +10–15% новых клиентов ежемесячно • Новый брендбук и позиционирование • Рост позиций в геосервисах">
+        data-results="Рост аудитории до десятков тысяч подписчиков • 30М+ просмотров контента • +10–15% новых клиентов ежемесячно • Новый брендбук и позиционирование • Рост позиций в геосервисах">
         <div class="flex items-center gap-3 mb-5">
           <span class="badge badge-accent">Флагманский кейс</span>
           <span class="text-silver text-sm font-body">3,5 года</span>
@@ -896,7 +1087,7 @@
           <p class="text-silver text-xs mb-3 font-body">Кинотеатр на крыше</p>
           <p class="body-text text-sm text-ash">SMM + маркетинг, геосервисы, таргет</p>
         </div>
-        <div class="reveal stagger-2 card tilt-card rounded-xl p-6 relative overflow-hidden" data-project="ishop" data-title="iShop" data-sub="Магазин техники" data-desc="Упаковка бренда и ведение соцсетей. Создание контент-стратегии, визуальной айдентики для соцсетей." data-results="Оформление и запуск соцсетей с нуля • Рост вовлечённости аудитории">
+        <div class="reveal stagger-2 card tilt-card rounded-xl p-6 relative overflow-hidden" data-project="ishop" data-title="iShop" data-sub="Магазин техники" data-desc="Упаковка бренда и ведение соцсетей. Создание контент-стратегии, визуальной айдентики для соцсетей." data-results="Добавил новый лайв формат • Рост вовлечённости аудитории">
           <div class="tilt-glare"></div>
           <h4 class="heading text-lg font-semibold mb-1 text-ink">iShop</h4>
           <p class="text-silver text-xs mb-3 font-body">Магазин техники</p>
@@ -908,11 +1099,11 @@
           <p class="text-silver text-xs mb-3 font-body">Сеть кофеен</p>
           <p class="body-text text-sm text-ash">Контент и продвижение</p>
         </div>
-        <div class="reveal stagger-4 card tilt-card rounded-xl p-6 relative overflow-hidden" data-project="flamingo" data-title="Flamingo" data-sub="Кастомная одежда" data-desc="Один из первых проектов. Запуск SMM с нуля: упаковка, контент, продвижение бренда кастомной одежды." data-results="Старт карьеры в маркетинге • Рост бренда с нуля">
+        <div class="reveal stagger-4 card tilt-card rounded-xl p-6 relative overflow-hidden" data-project="flamingo" data-title="Flamingo" data-sub="Кастомная одежда" data-desc="Один из первых проектов. Упаковка, контент, продвижение бренда кастомной одежды." data-results="Старт карьеры в маркетинге • Рост бренда">
           <div class="tilt-glare"></div>
           <h4 class="heading text-lg font-semibold mb-1 text-ink">Flamingo</h4>
           <p class="text-silver text-xs mb-3 font-body">Кастомная одежда</p>
-          <p class="body-text text-sm text-ash">Старт карьеры, рост с нуля</p>
+          <p class="body-text text-sm text-ash">Старт карьеры, рост бренда</p>
         </div>
         <div class="reveal stagger-5 card tilt-card rounded-xl p-6 relative overflow-hidden" data-project="machachev" data-title="Автодом Махачев" data-sub="Совместный проект с Исламом Махачевым" data-desc="Участие в совместном проекте с Исламом Махачевым. Работа над маркетингом и продвижением автобизнеса." data-results="Коллаборация с топовым спортсменом • Охват широкой аудитории">
           <div class="tilt-glare"></div>
@@ -1419,6 +1610,82 @@
       document.body.style.overflow = '';
     }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  </script>
+
+  <!-- Stats Gallery Script -->
+  <script>
+  (function() {
+    const TOTAL = 7;
+    let current = 0;
+    const modal = document.getElementById('statsGalleryModal');
+    const track = document.getElementById('statsGalleryTrack');
+    const progress = document.getElementById('statsGalleryProgress');
+    const images = track.querySelectorAll('img');
+
+    // Build dots
+    for (let i = 0; i < TOTAL; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'stats-gallery-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => goTo(i));
+      dot.style.cursor = 'pointer';
+      progress.appendChild(dot);
+    }
+
+    function updateGallery() {
+      images.forEach((img, i) => img.classList.toggle('active', i === current));
+      progress.querySelectorAll('.stats-gallery-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    function goTo(i) {
+      current = i;
+      updateGallery();
+    }
+
+    window.openStatsGallery = function() {
+      current = 0;
+      updateGallery();
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeStatsGallery = function() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    window.galleryNext = function() {
+      current = (current + 1) % TOTAL;
+      updateGallery();
+    };
+
+    window.galleryPrev = function() {
+      current = (current - 1 + TOTAL) % TOTAL;
+      updateGallery();
+    };
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (!modal.classList.contains('active')) return;
+      if (e.key === 'ArrowRight') galleryNext();
+      else if (e.key === 'ArrowLeft') galleryPrev();
+      else if (e.key === 'Escape') closeStatsGallery();
+    });
+
+    // Touch swipe
+    let touchStartX = 0;
+    track.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    track.addEventListener('touchend', function(e) {
+      const diff = e.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(diff) > 50) {
+        if (diff < 0) galleryNext();
+        else galleryPrev();
+      }
+    }, { passive: true });
+
+    updateGallery();
+  })();
   </script>
 </body>
 </html>

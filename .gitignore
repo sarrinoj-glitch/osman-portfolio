@@ -7,3 +7,4 @@ temporary screenshots/
 package-lock.json
 site-preview.mp4
 .mcp.json
+.vercel
