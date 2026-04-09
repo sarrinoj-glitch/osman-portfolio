@@ -476,27 +476,22 @@
       overflow: hidden;
       border-radius: 16px;
       position: relative;
-      display: flex;
-      transition: none;
     }
-    .stats-gallery-track img {
+    .stats-gallery-slider {
+      display: flex;
+      transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+      will-change: transform;
+    }
+    .stats-gallery-slider img {
       min-width: 100%;
       width: 100%;
       max-height: 85vh;
       height: auto;
       object-fit: contain;
       border-radius: 16px;
-      display: none;
       user-select: none;
       -webkit-user-drag: none;
-    }
-    .stats-gallery-track img.active {
-      display: block;
-      animation: galleryFadeIn 0.3s ease;
-    }
-    @keyframes galleryFadeIn {
-      from { opacity: 0; transform: scale(0.97); }
-      to { opacity: 1; transform: scale(1); }
+      flex-shrink: 0;
     }
     .stats-gallery-arrow {
       position: absolute;
@@ -975,35 +970,35 @@
             </thead>
             <tbody>
               <tr>
-                <td class="text-ink font-normal">Провёл один из крупнейших турниров по CS2 в Дагестане</td>
+                <td class="text-ink font-medium">Провёл один из крупнейших турниров по CS2 в Дагестане</td>
                 <td class="text-ash">92 команды, спонсоры, рост узнаваемости бренда</td>
               </tr>
               <tr>
-                <td class="text-ink font-normal">Контент в соцсетях</td>
+                <td class="text-ink font-medium">Контент в соцсетях</td>
                 <td class="text-ash">30 000 000+ суммарных просмотров</td>
               </tr>
               <tr>
-                <td class="text-ink font-normal">Стабильный прирост клиентов</td>
+                <td class="text-ink font-medium">Стабильный прирост клиентов</td>
                 <td class="text-ash">+10&ndash;15% новых клиентов ежемесячно</td>
               </tr>
               <tr>
-                <td class="text-ink font-normal">Ребрендинг Go Game</td>
+                <td class="text-ink font-medium">Ребрендинг Go Game</td>
                 <td class="text-ash">Полная упаковка бренда, новый брендбук, рост позиций в геосервисах</td>
               </tr>
               <tr>
-                <td class="text-ink font-normal">Коллаборации с инфлюенсерами</td>
+                <td class="text-ink font-medium">Коллаборации с инфлюенсерами</td>
                 <td class="text-ash">Привлечение аудитории через партнёрские форматы и подкасты</td>
               </tr>
               <tr>
-                <td class="text-ink font-normal">Таргет в ВК, 2ГИС, Яндекс.Картах</td>
+                <td class="text-ink font-medium">Таргет в ВК, 2ГИС, Яндекс.Картах</td>
                 <td class="text-ash">Рост трафика и заявок через платные каналы</td>
               </tr>
               <tr>
-                <td class="text-ink font-normal">Комьюнити-менеджмент</td>
+                <td class="text-ink font-medium">Комьюнити-менеджмент</td>
                 <td class="text-ash">Работа с сообществом, вовлечение аудитории</td>
               </tr>
               <tr>
-                <td class="text-ink font-normal">Развитие сервиса в команде</td>
+                <td class="text-ink font-medium">Развитие сервиса в команде</td>
                 <td class="text-ash">Обучающие уроки для новых админов, тренинги для коллектива</td>
               </tr>
             </tbody>
@@ -1031,13 +1026,15 @@
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
       </button>
       <div class="stats-gallery-track" id="statsGalleryTrack">
-        <img src="brand_screenshots/gogame-stats-1.png" alt="Статистика Go Game 1" loading="lazy">
-        <img src="brand_screenshots/gogame-stats-2.png" alt="Статистика Go Game 2" loading="lazy">
-        <img src="brand_screenshots/gogame-stats-3.png" alt="Статистика Go Game 3" loading="lazy">
-        <img src="brand_screenshots/gogame-stats-4.png" alt="Статистика Go Game 4" loading="lazy">
-        <img src="brand_screenshots/gogame-stats-5.png" alt="Статистика Go Game 5" loading="lazy">
-        <img src="brand_screenshots/gogame-stats-6.png" alt="Статистика Go Game 6" loading="lazy">
-        <img src="brand_screenshots/gogame-stats-7.png" alt="Статистика Go Game 7" loading="lazy">
+        <div class="stats-gallery-slider" id="statsGallerySlider">
+          <img src="brand_screenshots/gogame-stats-1.png" alt="Статистика Go Game 1" loading="lazy">
+          <img src="brand_screenshots/gogame-stats-2.png" alt="Статистика Go Game 2" loading="lazy">
+          <img src="brand_screenshots/gogame-stats-3.png" alt="Статистика Go Game 3" loading="lazy">
+          <img src="brand_screenshots/gogame-stats-4.png" alt="Статистика Go Game 4" loading="lazy">
+          <img src="brand_screenshots/gogame-stats-5.png" alt="Статистика Go Game 5" loading="lazy">
+          <img src="brand_screenshots/gogame-stats-6.png" alt="Статистика Go Game 6" loading="lazy">
+          <img src="brand_screenshots/gogame-stats-7.png" alt="Статистика Go Game 7" loading="lazy">
+        </div>
       </div>
       <button class="stats-gallery-arrow stats-gallery-arrow--left" onclick="galleryPrev()" aria-label="Назад">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
@@ -1619,9 +1616,8 @@
     const TOTAL = 7;
     let current = 0;
     const modal = document.getElementById('statsGalleryModal');
-    const track = document.getElementById('statsGalleryTrack');
+    const slider = document.getElementById('statsGallerySlider');
     const progress = document.getElementById('statsGalleryProgress');
-    const images = track.querySelectorAll('img');
 
     // Build dots
     for (let i = 0; i < TOTAL; i++) {
@@ -1633,7 +1629,7 @@
     }
 
     function updateGallery() {
-      images.forEach((img, i) => img.classList.toggle('active', i === current));
+      slider.style.transform = 'translateX(-' + (current * 100) + '%)';
       progress.querySelectorAll('.stats-gallery-dot').forEach((d, i) => d.classList.toggle('active', i === current));
     }
 
@@ -1644,7 +1640,9 @@
 
     window.openStatsGallery = function() {
       current = 0;
+      slider.style.transition = 'none';
       updateGallery();
+      requestAnimationFrame(() => { slider.style.transition = ''; });
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     };
@@ -1674,10 +1672,10 @@
 
     // Touch swipe
     let touchStartX = 0;
-    track.addEventListener('touchstart', function(e) {
+    slider.addEventListener('touchstart', function(e) {
       touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
-    track.addEventListener('touchend', function(e) {
+    slider.addEventListener('touchend', function(e) {
       const diff = e.changedTouches[0].screenX - touchStartX;
       if (Math.abs(diff) > 50) {
         if (diff < 0) galleryNext();
